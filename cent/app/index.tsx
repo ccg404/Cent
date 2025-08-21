@@ -52,6 +52,7 @@ export default function Index() {
 
     content: {
       width: "100%",
+      marginBottom: 30,
     },
 
     item: {
@@ -91,8 +92,41 @@ export default function Index() {
     },
 
     card1:{
+      backgroundColor: "#f0f0f0",
+      padding: 20,
+      borderRadius: 10,
+      marginBottom: 20,
+      width: "100%",
+      alignItems: "flex-start",
+      justifyContent: "center",
+      elevation: 5,
+    },
 
-    }
+    card2:{
+      backgroundColor: "#b9fabbff",
+      borderColor: "green",
+      borderWidth: 1,
+      padding: 20,
+      borderRadius: 10,
+      marginBottom: 20,
+      width: "100%",
+      alignItems: "flex-start",
+      justifyContent: "center",
+      elevation: 5,
+    },
+
+    card3:{
+      backgroundColor: "#feaaaaff",
+      borderColor: "red",
+      borderWidth: 1,
+      padding: 20,
+      borderRadius: 10,
+      marginBottom: 20,
+      width: "100%",
+      alignItems: "flex-start",
+      justifyContent: "center",
+      elevation: 5,
+    },
   });
 
   const DATA =[ 
@@ -127,22 +161,18 @@ export default function Index() {
           <Text>Budgets</Text>
       </View>
       <View style={styles.content}>
-        <FlatList
-          data={DATA}
-          style={
-            {
-              width: "100%",
-              padding: 10,
-            }
-          }
-          renderItem={({item}) => (
-          <View style={styles.display}>
-            <Text style={styles.text}>{item.title}</Text>
-            <Text style={styles.text}>{item.value}</Text>
-          </View>
-        )}
-          keyExtractor={item => item.id}
-        />
+        <View style={styles.card1}>
+          <Text>Total Balance</Text>
+          <Text style={{ fontSize: 24, fontWeight: "bold", color: "#333", marginTop: 10 }}>₱0</Text>
+        </View>
+        <View style={styles.card2}>
+          <Text>Monthly Income</Text>
+          <Text style={{ fontSize: 24, fontWeight: "bold", color: "#333", marginTop: 10 }}>₱0</Text>
+        </View>
+        <View style={styles.card3}>
+          <Text>Total Expenses</Text>
+          <Text style={{ fontSize: 24, fontWeight: "bold", color: "#333", marginTop: 10 }}>₱0</Text>
+        </View>
       </View>
       <View style={styles.transactionArea}>
         <View style={styles.optionsContainer}>
