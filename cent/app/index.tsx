@@ -6,188 +6,195 @@ import LinearGradient from "react-native-linear-gradient";
 
 export default function Index() {
   const styles = StyleSheet.create({
-    text: {
-      fontSize: 20,
-      fontWeight: "bold",
-      color: "#333",
-      borderColor: "black",
-      padding: 10,
-      textAlign: "center",
-    },
-
-    btn: {
-      backgroundColor: "white",
-      padding: 10,
-      borderRadius: 5,
-      color: "color",
-      textAlign: "center",
-    },
-
     container:{
-        flex: 1,
-        justifyContent: "flex-start",
-        alignItems: "center",
-        borderBlockColor: "black",
-        backgroundColor: "#ffffffff",
-        gap: 10,
-        padding: 10,
+      flex: 1,
+      justifyContent: "flex-start",
+      alignItems: "center"
     },
-
-    navigation:{
-      padding: 10,
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      gap: 20,
-      marginBottom: 20,
-    },
-
-    heading:{
-      borderColor: "gray",
-      borderBottomWidth: 1,
-      padding: 20,
-      marginBottom: 20,
+    
+    header:{
       width: "100%",
-    },
-
-    content: {
-      width: "100%",
-      marginBottom: 30,
-    },
-
-    item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    },
-
-    display:{
+      padding: 16,
       flexDirection: "column",
-      justifyContent: "space-between",
-      alignItems: "flex-start",
-      width: "100%",
+      gap: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: "#e7e4e4ff",
     },
 
-    transactionArea: {
-      width: "100%",
-      padding: 10,
+    headerTextContainer: {
+      flexDirection: "column",
+      gap: 4,
     },
 
-    optionsContainer:{
+    headerText: {
+      fontSize: 24,
+      fontWeight: "bold",
+      color: "#333"
+    },
+
+    nav:{
+      flexDirection: "row",
+      justifyContent: "space-around",
+      gap: 20,
+      borderWidth: 1,
+      borderRadius: 8,
+      backgroundColor: "#edececff",
+      borderColor: "#edececff",
+    },
+
+    navBtnContainer:{
+      padding: 8,
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
-      gap: 20,
-      marginBottom: 20,
+      gap: 30,
     },
 
-    buttonsWrapper:{
-      width: "50%",
-      borderRadius: 5,
-      overflow: "hidden",
-      color: "black",
-      borderWidth: 1,
-      borderColor: "black",
-    },
-
-    card1:{
-      backgroundColor: "#f0f0f0",
-      padding: 20,
-      borderRadius: 10,
-      marginBottom: 20,
-      width: "100%",
-      alignItems: "flex-start",
+    content:{
+      marginTop: 50,
       justifyContent: "center",
+      alignItems: "center",
+    },
+
+    balanceCard:{
+      width: 320,
+      height: 200,
+      borderRadius: 16,
+      backgroundColor: "#4a90e2",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 10,
+      padding: 20,
+    },
+
+    balanceCardText: {
+      color: "#fff",
+      fontSize: 20,
+    },
+
+    balanceCardAmount: {
+      color: "#fff",
+      fontSize: 32,
+    },
+
+    summaryCardsContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginTop: 20,
+      padding: 5,
+    },
+
+    incomeCard: {
+      width: 150,
+      backgroundColor: "#ffffffff",
+      borderRadius: 8,
+      padding: 16,
+      marginRight: 8,
+      justifyContent: "center",
+      alignContent: "center",
+      gap: 10,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
       elevation: 5,
     },
 
-    card2:{
-      backgroundColor: "#b9fabbff",
-      borderColor: "green",
-      borderWidth: 1,
-      padding: 20,
-      borderRadius: 10,
-      marginBottom: 20,
-      width: "100%",
-      alignItems: "flex-start",
+    incomeCardText: {
+      color: "#b5b5b5ff",
+      fontSize: 12,
+    },
+
+    incomeCardAmount: {
+      color: "#0d8d0bff",
+      fontSize: 22,
+    },
+
+    expenseCard:{
+      width: 150,
+      backgroundColor: "#ffffffff",
+      borderRadius: 8,
+      padding: 16,
+      marginLeft: 8,
       justifyContent: "center",
+      alignContent: "center",
+      gap: 10,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
       elevation: 5,
     },
 
-    card3:{
-      backgroundColor: "#feaaaaff",
-      borderColor: "red",
-      borderWidth: 1,
-      padding: 20,
-      borderRadius: 10,
-      marginBottom: 20,
-      width: "100%",
-      alignItems: "flex-start",
-      justifyContent: "center",
-      elevation: 5,
+    expenseCardText: {
+      color: "#b5b5b5ff",
+      fontSize: 12,
+    },
+
+    expenseCardAmount: {
+      color: "#f34646ff",
+      fontSize: 22,
     },
   });
 
-  const DATA =[ 
-    {
-      id: '1',
-      title: 'Total Balance',
-      value: '₱200'
-    },
-    {
-      id: '2',
-      title: 'Monthly Income',
-      value: '+ ₱300'
-    },
-    
-    {
-      id: '3',
-      title: 'Total Expenses',
-      value: '- ₱100'
-    }
-    
-  ];
-
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.heading}>
-        <Text style={styles.text}>Cent</Text>
-      </View>
-      <View style={styles.navigation}>
-          <Text>Overview</Text>
-          <Text>Accounts</Text>
-          <Text>Transactions</Text>
-          <Text>Budgets</Text>
-      </View>
-      <View style={styles.content}>
-        <View style={styles.card1}>
-          <Text>Total Balance</Text>
-          <Text style={{ fontSize: 24, fontWeight: "bold", color: "#333", marginTop: 10 }}>₱0</Text>
+      <View style={styles.header}>
+        <View style={styles.headerTextContainer}>
+          <Text style={styles.headerText}>Cent</Text>
+          <Text>Good morning, Carlo!</Text>
         </View>
-        <View style={styles.card2}>
-          <Text>Monthly Income</Text>
-          <Text style={{ fontSize: 24, fontWeight: "bold", color: "#333", marginTop: 10 }}>₱0</Text>
-        </View>
-        <View style={styles.card3}>
-          <Text>Total Expenses</Text>
-          <Text style={{ fontSize: 24, fontWeight: "bold", color: "#333", marginTop: 10 }}>₱0</Text>
-        </View>
-      </View>
-      <View style={styles.transactionArea}>
-        <View style={styles.optionsContainer}>
-          <Text style={{
-            fontSize: 16,
-            fontWeight: "bold",
-            color: "#333",
-          }}>Recent Activity</Text>
-          <View style={styles.buttonsWrapper}>
-            <TouchableOpacity>
-              <Text style={styles.btn}>+ Add Transaction</Text>
-            </TouchableOpacity>
+        <View style={styles.nav}>
+          <View style={styles.navBtnContainer}>
+          <TouchableOpacity>
+            <Text>Overview</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text>Accounts</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text>Activity</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text>Budget</Text>
+          </TouchableOpacity>
           </View>
         </View>
       </View>
+      <View style={styles.content}>
+        <View style={styles.balanceCard}>
+          <Text style={styles.balanceCardText}>Total Balance</Text>
+          <Text style={styles.balanceCardAmount}>₱0.00</Text>
+        </View>
+        <View style={styles.summaryCardsContainer}>
+          <View style={styles.incomeCard}>
+            <Text style={styles.incomeCardText}>Monthly Income</Text>
+            <Text style={styles.incomeCardAmount}>₱0.00</Text>
+          </View>
+          <View style={styles.expenseCard}>
+            <Text style={styles.expenseCardText}>Total Expenses</Text>
+            <Text style={styles.expenseCardAmount}>₱0.00</Text>
+          </View>
+        </View>
+      </View>
+      {/* Quick Actions Section*/}
+      <View>
+
+      </View>
+     {/* Rcent Activiy Section */}
     </SafeAreaView>
   );
 }
