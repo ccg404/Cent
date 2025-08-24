@@ -1,7 +1,7 @@
 import { Text, View, FlatList, StyleSheet, Button, TouchableOpacity } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import LinearGradient from "react-native-linear-gradient";
+import {Link} from "expo-router";
 
 
 export default function Index() {
@@ -152,28 +152,31 @@ export default function Index() {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Header Section */}
       <View style={styles.header}>
         <View style={styles.headerTextContainer}>
           <Text style={styles.headerText}>Cent</Text>
           <Text>Good morning, Carlo!</Text>
         </View>
+        {/* Navigation Section */}
         <View style={styles.nav}>
           <View style={styles.navBtnContainer}>
           <TouchableOpacity>
-            <Text>Overview</Text>
+            <Link href="/">Overview</Link>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text>Accounts</Text>
+            <Link href="/account">Accounts</Link>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text>Activity</Text>
+            <Link href="/activity">Activity</Link>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text>Budget</Text>
+            <Link href="/budget">Budget</Link>
           </TouchableOpacity>
           </View>
         </View>
       </View>
+      {/* Main Content */}
       <View style={styles.content}>
         <View style={styles.balanceCard}>
           <Text style={styles.balanceCardText}>Total Balance</Text>
@@ -198,3 +201,4 @@ export default function Index() {
     </SafeAreaView>
   );
 }
+
