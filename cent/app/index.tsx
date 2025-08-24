@@ -1,7 +1,16 @@
 import { Text, View, FlatList, StyleSheet, Button, TouchableOpacity } from "react-native";
-import React from "react";
+import React, {useState} from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {Link} from "expo-router";
+import { 
+  PiggyBank,
+  Wallet,
+  ChartPie,
+  ChartNoAxesCombined,
+  WalletCards,
+  Landmark
+ } from 'lucide-react-native';
+
 
 
 export default function Index() {
@@ -14,7 +23,7 @@ export default function Index() {
     
     header:{
       width: "100%",
-      padding: 16,
+      padding: 10,
       flexDirection: "column",
       gap: 20,
       borderBottomWidth: 1,
@@ -22,8 +31,11 @@ export default function Index() {
     },
 
     headerTextContainer: {
-      flexDirection: "column",
-      gap: 4,
+      flexDirection: "row",
+      justifyContent:"flex-start",
+      alignItems: "center",
+      gap: 10,
+      padding: 5
     },
 
     headerText: {
@@ -35,7 +47,7 @@ export default function Index() {
     nav:{
       flexDirection: "row",
       justifyContent: "space-around",
-      gap: 20,
+      gap: 10,
       borderWidth: 1,
       borderRadius: 8,
       backgroundColor: "#edececff",
@@ -43,11 +55,11 @@ export default function Index() {
     },
 
     navBtnContainer:{
-      padding: 8,
+      padding: 1,
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
-      gap: 30,
+      gap: 5,
     },
 
     content:{
@@ -58,11 +70,11 @@ export default function Index() {
 
     balanceCard:{
       width: 320,
-      height: 200,
-      borderRadius: 16,
+      height: 150,
+      borderRadius: 20,
       backgroundColor: "#4a90e2",
-      justifyContent: "center",
-      alignItems: "flex-start",
+      justifyContent: "space-between",
+      alignItems: "center",
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -72,6 +84,7 @@ export default function Index() {
       shadowRadius: 3.84,
       elevation: 10,
       padding: 20,
+      flexDirection: "row"
     },
 
     balanceCardText: {
@@ -150,28 +163,37 @@ export default function Index() {
     },
   });
 
+  const [activeTab, setActiveTab] = useState("overview");
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
         <View style={styles.headerTextContainer}>
-          <Text style={styles.headerText}>Cent</Text>
-          <Text>Good morning, Carlo!</Text>
+          <PiggyBank size={45}/>
+          <View>
+           <Text style={styles.headerText}>Cent</Text>
+           <Text style={{color: "#767272ff"}}>Good morning, Carlo!</Text>
+          </View>
         </View>
         {/* Navigation Section */}
         <View style={styles.nav}>
           <View style={styles.navBtnContainer}>
-          <TouchableOpacity>
-            <Link href="/">Overview</Link>
+          <TouchableOpacity onPress={() => setActiveTab("overview")} style={{ padding: 10, borderRadius: 8, flexDirection: "row", gap: 2, justifyContent: "center", alignItems: "center", backgroundColor: activeTab === "overview" ? "#ffffffff" : "#edececff" }}>
+            <ChartNoAxesCombined size={15}/>
+            <Link href="/" style={{fontSize: 12}}>Overview</Link>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Link href="/account">Accounts</Link>
+          <TouchableOpacity onPress={() => setActiveTab("transactions")} style={{ padding: 10, borderRadius: 8, flexDirection: "row", gap: 2, justifyContent: "center", alignItems: "center", backgroundColor: activeTab === "transactions" ? "#ffffffff" : "#edececff" }}>
+            <WalletCards size={15}/>
+            <Link href="/account" style={{fontSize: 12,}}>Accounts</Link>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Link href="/activity">Activity</Link>
+          <TouchableOpacity onPress={() => setActiveTab("activity")} style={{ padding: 10, borderRadius: 8,flexDirection: "row", gap: 2, justifyContent: "center", alignItems: "center", backgroundColor: activeTab === "activity" ? "#ffffffff" : "#edececff" }}>
+            <Landmark size={15}/>
+            <Link href="/activity" style={{fontSize: 12}}>Activity</Link>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Link href="/budget">Budget</Link>
+          <TouchableOpacity onPress={() => setActiveTab("budget")} style={{ padding: 10, borderRadius: 8,flexDirection: "row", gap: 2, justifyContent: "center", alignItems: "center", backgroundColor: activeTab === "budget" ? "#ffffffff" : "#edececff" }}>
+            <ChartPie size={15}/>
+            <Link href="/budget" style={{fontSize: 12}}>Budget</Link>
           </TouchableOpacity>
           </View>
         </View>
@@ -179,8 +201,13 @@ export default function Index() {
       {/* Main Content */}
       <View style={styles.content}>
         <View style={styles.balanceCard}>
-          <Text style={styles.balanceCardText}>Total Balance</Text>
-          <Text style={styles.balanceCardAmount}>₱0.00</Text>
+          <View>
+            <Text style={styles.balanceCardText}>Total Balance</Text>
+            <Text style={styles.balanceCardAmount}>₱0.00</Text>
+          </View>
+          <View>
+            <Wallet size={45} color={"white"}/>
+          </View>
         </View>
         <View style={styles.summaryCardsContainer}>
           <View style={styles.incomeCard}>
