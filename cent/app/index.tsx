@@ -60,11 +60,13 @@ export default function Index() {
         );
       case "activity":
         return (
-          <View>
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-              🏦 Activity Section
-            </Text>
-            <Text>Recent Transactions will go here</Text>
+          <View style={styles.transactionContainer}>
+            <TouchableOpacity style={styles.transactionBtn}>
+              <Text style={styles.transactionBtnText}>+ Add Transaction</Text>
+            </TouchableOpacity>
+            <View style={styles.transactionListContainer}>
+              <Text style={{fontSize: 18, fontWeight: "bold"}}>Recent Activity</Text>
+            </View>
           </View>
         );
       case "budget":
@@ -101,13 +103,14 @@ export default function Index() {
               padding: 10,
               borderRadius: 8,
               flexDirection: "row",
-              gap: 2,
+              gap: 5,
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: activeTab === "overview" ? "#ffffffff" : "#edececff"
+              backgroundColor: activeTab === "overview" ? "#ffffffff" : "#edececff",
+              width: 100,
             }}
           >
-            <ChartNoAxesCombined size={15} />
+            <ChartNoAxesCombined size={20} />
             <Text>Overview</Text>
           </TouchableOpacity>
 
@@ -117,13 +120,14 @@ export default function Index() {
               padding: 10,
               borderRadius: 8,
               flexDirection: "row",
-              gap: 2,
+              gap: 5,
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: activeTab === "activity" ? "#ffffffff" : "#edececff"
+              backgroundColor: activeTab === "activity" ? "#ffffffff" : "#edececff",
+              width: 100,
             }}
           >
-            <Landmark size={15} />
+            <Landmark size={20} />
             <Text>Activity</Text>
           </TouchableOpacity>
 
@@ -133,13 +137,14 @@ export default function Index() {
               padding: 10,
               borderRadius: 8,
               flexDirection: "row",
-              gap: 2,
+              gap: 5,
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: activeTab === "budget" ? "#ffffffff" : "#edececff"
+              backgroundColor: activeTab === "budget" ? "#ffffffff" : "#edececff",
+              width: 100,
             }}
           >
-            <ChartPie size={15} />
+            <ChartPie size={20} />
             <Text>Budget</Text>
           </TouchableOpacity>
         </View>
@@ -313,5 +318,41 @@ const styles = StyleSheet.create({
 
     expenseCardTextContainer:{
       gap: 15,
+    },
+
+    //Activity Section
+    transactionContainer:{
+      justifyContent: "center",
+      alignItems: "center",
+      padding: 10,
+    },
+
+    transactionBtn:{
+      padding: 12,
+      borderRadius: 10,
+      backgroundColor: "#dfdfdfff",
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: 10,
+      width: 150,
+    },
+
+    transactionBtnText:{
+      color: "#333",
+      fontSize: 14,
+      fontWeight: "bold",
+    },
+
+    transactionList:{},
+
+    transactionListContainer:{
+      backgroundColor: "#c4c3c3ff",
+      width: 300,
+      height: 400,
+      padding: 10,
+      borderRadius: 10,
+      marginTop: 10,
+      textAlign: "center",
     }
-  });
+  }
+);
