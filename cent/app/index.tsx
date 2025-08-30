@@ -12,11 +12,152 @@ import {
   TrendingDown,
   TrendingUp
  } from 'lucide-react-native';
-import Activity from "./activity";
+
 
 
 export default function Index() {
-  const styles = StyleSheet.create({
+  const [activeTab, setActiveTab] = useState("overview");
+
+   const renderContent = () => {
+    switch (activeTab) {
+      case "overview":
+        return (
+          <View style={styles.content}>
+        <View style={styles.balanceCard}>
+          <View>
+            <Text style={styles.balanceCardText}>Total Balance</Text>
+            <Text style={styles.balanceCardAmount}>₱0.00</Text>
+          </View>
+          <View>
+            <Wallet size={45} color={"white"}/>
+          </View>
+        </View>
+        <View style={styles.summaryCardsContainer}>
+          <View style={styles.incomeCard}>
+            <View style={styles.incomeCardTextContainer}>
+              <Text style={styles.incomeCardText}>Monthly Income</Text>
+                <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
+                  <Text style={styles.incomeCardAmount}>₱0.00</Text>
+                  <View style={{padding: 10, borderRadius: 10, backgroundColor: "#e0f2e0ff"}}>
+                    <TrendingUp size={20} color={"green"}/>
+                  </View>
+                </View>
+            </View>
+          </View>
+          <View style={styles.expenseCard}>
+            <View style={styles.expenseCardTextContainer}>
+              <Text style={styles.expenseCardText}>Total Expenses</Text>
+              <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
+                <Text style={styles.expenseCardAmount}>₱0.00</Text>
+                <View style={{padding: 10, borderRadius: 10, backgroundColor: "#fce4e4ff"}}>
+                  <TrendingDown size={20} color={"red"}/>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+        );
+      case "activity":
+        return (
+          <View>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+              🏦 Activity Section
+            </Text>
+            <Text>Recent Transactions will go here</Text>
+          </View>
+        );
+      case "budget":
+        return (
+          <View>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+              💰 Budget Section
+            </Text>
+            <Text>Budget planning content here</Text>
+          </View>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {/* Header Section */}
+      <View style={styles.header}>
+        <View style={styles.headerTextContainer}>
+          <PiggyBank size={45}/>
+          <View>
+           <Text style={styles.headerText}>Cent</Text>
+           <Text style={{color: "#767272ff"}}>Good morning, Carlo!</Text>
+          </View>
+        </View>
+
+ {/* Navigation Section */}
+        <View style={styles.nav}>
+          <TouchableOpacity
+            onPress={() => setActiveTab("overview")}
+            style={{
+              padding: 10,
+              borderRadius: 8,
+              flexDirection: "row",
+              gap: 2,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: activeTab === "overview" ? "#ffffffff" : "#edececff"
+            }}
+          >
+            <ChartNoAxesCombined size={15} />
+            <Text>Overview</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => setActiveTab("activity")}
+            style={{
+              padding: 10,
+              borderRadius: 8,
+              flexDirection: "row",
+              gap: 2,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: activeTab === "activity" ? "#ffffffff" : "#edececff"
+            }}
+          >
+            <Landmark size={15} />
+            <Text>Activity</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => setActiveTab("budget")}
+            style={{
+              padding: 10,
+              borderRadius: 8,
+              flexDirection: "row",
+              gap: 2,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: activeTab === "budget" ? "#ffffffff" : "#edececff"
+            }}
+          >
+            <ChartPie size={15} />
+            <Text>Budget</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* Content Section */}
+      <View style={{ flex: 1, padding: 20 }}>{renderContent()}</View>
+      {/* Quick Actions Section*/}
+      
+      <View>
+
+      </View>
+     {/* Rcent Activiy Section */}
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
     container:{
       flex: 1,
       justifyContent: "flex-start",
@@ -174,83 +315,3 @@ export default function Index() {
       gap: 15,
     }
   });
-
-  const [activeTab, setActiveTab] = useState("overview");
-
-  return (
-    <SafeAreaView style={styles.container}>
-      {/* Header Section */}
-      <View style={styles.header}>
-        <View style={styles.headerTextContainer}>
-          <PiggyBank size={45}/>
-          <View>
-           <Text style={styles.headerText}>Cent</Text>
-           <Text style={{color: "#767272ff"}}>Good morning, Carlo!</Text>
-          </View>
-        </View>
-
-        {/* Navigation Section */}
-        <View style={styles.nav}>
-          <View style={styles.navBtnContainer}>
-          <TouchableOpacity onPress={() => setActiveTab("overview")} style={{ padding: 10, borderRadius: 8, flexDirection: "row", gap: 2, justifyContent: "center", alignItems: "center", backgroundColor: activeTab === "overview" ? "#ffffffff" : "#edececff" }}>
-            <ChartNoAxesCombined size={15}/>
-            <Link href="/" style={{fontSize: 14}}>Overview</Link>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setActiveTab("activity")} style={{ padding: 10, borderRadius: 8,flexDirection: "row", gap: 2, justifyContent: "center", alignItems: "center", backgroundColor: activeTab === "activity" ? "#ffffffff" : "#edececff" }}>
-            <Landmark size={15}/>
-            <Link href="/activity" style={{fontSize: 14}}>Activity</Link>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setActiveTab("budget")} style={{ padding: 10, borderRadius: 8,flexDirection: "row", gap: 2, justifyContent: "center", alignItems: "center", backgroundColor: activeTab === "budget" ? "#ffffffff" : "#edececff" }}>
-            <ChartPie size={15}/>
-            <Link href="/budget" style={{fontSize: 14}}>Budget</Link>
-          </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-
-      {/* Main Content */}
-      <View style={styles.content}>
-        <View style={styles.balanceCard}>
-          <View>
-            <Text style={styles.balanceCardText}>Total Balance</Text>
-            <Text style={styles.balanceCardAmount}>₱0.00</Text>
-          </View>
-          <View>
-            <Wallet size={45} color={"white"}/>
-          </View>
-        </View>
-        <View style={styles.summaryCardsContainer}>
-          <View style={styles.incomeCard}>
-            <View style={styles.incomeCardTextContainer}>
-              <Text style={styles.incomeCardText}>Monthly Income</Text>
-                <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
-                  <Text style={styles.incomeCardAmount}>₱0.00</Text>
-                  <View style={{padding: 10, borderRadius: 10, backgroundColor: "#e0f2e0ff"}}>
-                    <TrendingUp size={20} color={"green"}/>
-                  </View>
-                </View>
-            </View>
-          </View>
-          <View style={styles.expenseCard}>
-            <View style={styles.expenseCardTextContainer}>
-              <Text style={styles.expenseCardText}>Total Expenses</Text>
-              <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
-                <Text style={styles.expenseCardAmount}>₱0.00</Text>
-                <View style={{padding: 10, borderRadius: 10, backgroundColor: "#fce4e4ff"}}>
-                  <TrendingDown size={20} color={"red"}/>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-      {/* Quick Actions Section*/}
-      
-      <View>
-
-      </View>
-     {/* Rcent Activiy Section */}
-    </SafeAreaView>
-  );
-}
-
