@@ -8,9 +8,11 @@ import {
   ChartPie,
   ChartNoAxesCombined,
   WalletCards,
-  Landmark
+  Landmark,
+  TrendingDown,
+  TrendingUp
  } from 'lucide-react-native';
-
+import Activity from "./activity";
 
 
 export default function Index() {
@@ -34,8 +36,8 @@ export default function Index() {
       flexDirection: "row",
       justifyContent:"flex-start",
       alignItems: "center",
-      gap: 10,
-      padding: 5
+      gap: 15,
+      padding: 10
     },
 
     headerText: {
@@ -105,14 +107,14 @@ export default function Index() {
     },
 
     incomeCard: {
-      width: 150,
+      width: 160,
       backgroundColor: "#ffffffff",
       borderRadius: 8,
-      padding: 16,
+      padding: 15,
       marginRight: 8,
-      justifyContent: "center",
+      justifyContent: "flex-start",
       alignContent: "center",
-      gap: 10,
+      gap: 15,
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -121,20 +123,25 @@ export default function Index() {
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
       elevation: 5,
+      flexDirection: "row",
     },
 
     incomeCardText: {
       color: "#b5b5b5ff",
-      fontSize: 12,
+      fontSize: 14,
+    },
+
+    incomeCardTextContainer:{
+      gap: 15,
     },
 
     incomeCardAmount: {
       color: "#0d8d0bff",
-      fontSize: 22,
+      fontSize: 28,
     },
 
     expenseCard:{
-      width: 150,
+      width: 160,
       backgroundColor: "#ffffffff",
       borderRadius: 8,
       padding: 16,
@@ -154,13 +161,17 @@ export default function Index() {
 
     expenseCardText: {
       color: "#b5b5b5ff",
-      fontSize: 12,
+      fontSize: 14,
     },
 
     expenseCardAmount: {
       color: "#f34646ff",
-      fontSize: 22,
+      fontSize: 28,
     },
+
+    expenseCardTextContainer:{
+      gap: 15,
+    }
   });
 
   const [activeTab, setActiveTab] = useState("overview");
@@ -176,6 +187,7 @@ export default function Index() {
            <Text style={{color: "#767272ff"}}>Good morning, Carlo!</Text>
           </View>
         </View>
+
         {/* Navigation Section */}
         <View style={styles.nav}>
           <View style={styles.navBtnContainer}>
@@ -198,6 +210,7 @@ export default function Index() {
           </View>
         </View>
       </View>
+
       {/* Main Content */}
       <View style={styles.content}>
         <View style={styles.balanceCard}>
@@ -211,12 +224,26 @@ export default function Index() {
         </View>
         <View style={styles.summaryCardsContainer}>
           <View style={styles.incomeCard}>
-            <Text style={styles.incomeCardText}>Monthly Income</Text>
-            <Text style={styles.incomeCardAmount}>₱0.00</Text>
+            <View style={styles.incomeCardTextContainer}>
+              <Text style={styles.incomeCardText}>Monthly Income</Text>
+                <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
+                  <Text style={styles.incomeCardAmount}>₱0.00</Text>
+                  <View style={{padding: 10, borderRadius: 10, backgroundColor: "#e0f2e0ff"}}>
+                    <TrendingUp size={20} color={"green"}/>
+                  </View>
+                </View>
+            </View>
           </View>
           <View style={styles.expenseCard}>
-            <Text style={styles.expenseCardText}>Total Expenses</Text>
-            <Text style={styles.expenseCardAmount}>₱0.00</Text>
+            <View style={styles.expenseCardTextContainer}>
+              <Text style={styles.expenseCardText}>Total Expenses</Text>
+              <View style={{flexDirection: "row", alignItems: "center", gap: 15}}>
+                <Text style={styles.expenseCardAmount}>₱0.00</Text>
+                <View style={{padding: 10, borderRadius: 10, backgroundColor: "#fce4e4ff"}}>
+                  <TrendingDown size={20} color={"red"}/>
+                </View>
+              </View>
+            </View>
           </View>
         </View>
       </View>
